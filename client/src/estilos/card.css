@@ -1,0 +1,78 @@
+.card {
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    border:1px solid;
+    border-radius: 20px;
+    margin: 20px;
+    width: 288px;
+    height: 400px;
+    background-color: transparent;
+    border:none;
+    color: black;
+    text-decoration: none;
+    box-shadow: none;
+  }
+  .hh{
+    text-decoration: none;
+    box-shadow: none;
+  }
+.card:hover{
+  /*background-color: rgb(181, 246, 224);
+  opacity: 0.4;*/ 
+    background-color: #fa9779;
+    
+    border:3px solid #f4511e;
+    border-radius: 20px;
+    text-decoration: none;
+    box-shadow: none;
+  }
+  .img{
+
+    width: 288px;
+    height: 10rem;
+    border-radius: 20px;
+    border-bottom-left-radius: 0%;
+    border-bottom-right-radius: 0%;
+  }
+  .button2 {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 12px;
+    padding: 6px;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+  
+  .button2 span {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    transition: 0.5s;
+    margin: auto;
+  }
+  
+  .button2 span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+    
+  }
+  
+  .button2:hover span {
+    height: auto;
+    padding-right: 25px;
+ 
+  }
+  
+  .button2:hover span:after {
+    opacity: 1;
+    right: 0;
+
+  }

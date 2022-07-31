@@ -1,0 +1,11 @@
+.div{
+  
+    height: 100%;
+    width: 100%;}
+body{
+    background-image: url(C:\Users\User\Desktop\Proyecto_Individual_Dogs\client\src\imagenes\fondo.jpg);
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

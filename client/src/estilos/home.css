@@ -1,0 +1,128 @@
+.nav{ 
+    
+    background-color: transparent;
+    /*height: 50px;
+    grid-template-columns: auto;
+    
+    align-items: center;*/
+    position: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    top: 0;
+    width: 100%;
+}
+
+
+div.contenedor{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+.select-css {
+    display: flex;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    color: white;
+    line-height: 1.3;
+    padding: .4em 1.4em .3em .8em;
+    width: 200px;
+    max-width: 100%; 
+    box-sizing: border-box;
+    margin: 0;
+    border: solid 1px #fa9779;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #f4511e;
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+   }
+   .select-css::-ms-expand {
+    display: none;
+    background-color: #f4511e;
+   }
+   .select-css:hover {
+    border-color: #f4511e;
+   }
+   .select-css option {
+    font-weight:normal;
+    background-color: #fa9779;
+   }
+   .select-css option:hover{
+    background-color: #f4511e;
+   }
+
+
+
+
+/* CSS */
+
+.button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 6px;
+    width: 120px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin-left: 228px;
+  }
+  
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+   
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+  .recButton {
+    width: auto;
+    height: auto;
+    border:  solid #f4511e;
+    background: #f4511e;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px ;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .rec {
+    padding: auto;
+    width: auto;
+    position:relative;
+    display: block;
+  }
+  .hh{
+    text-decoration: none;
+    box-shadow: none;
+  }
