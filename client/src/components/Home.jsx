@@ -92,7 +92,7 @@ export default function Home (){
 
             <div >
                <select className="select-css" onChange={(e) => handleFilterCreated(e)}>  
-                    <option className="select-css option" tvalue=""  disabled selected>Filtrar por Creado/Existente</option>                
+                    <option className="select-css option" tvalue="">Filtrar por Creado/Existente</option>          
                     <option className="select-css option" value='all'>Todos</option>
                     <option className="select-css option" value="created">Razas agragadas</option>
                     <option className="select-css option" value="api">Razas existentes</option>
@@ -101,7 +101,7 @@ export default function Home (){
 
             <div >
                 <select className="select-css" onChange={(e) =>handleFilterByTemp(e)}>
-                <option className="select-css option" value="" disabled selected>Filtrar por temperamento</option>
+                <option className="select-css option" value="">Filtrar por temperamento</option>
                 <option className="select-css option" value="all">Todos</option>
                 {allTemperamento && allTemperamento.map((t)=>(
                         <option className="select-css option" key={t.id} value={t.name}>{t.name}</option>
@@ -111,7 +111,7 @@ export default function Home (){
                 
             <div >
                 <select className="select-css" onChange={e=>handleSortPeso(e)}>
-                    <option className="select-css option" value="" disabled selected>Filtrar por peso</option>
+                    <option className="select-css option" value="">Filtrar por peso</option>
                     <option className="select-css option" value= "men">Menor Peso</option>
                     <option className="select-css option" value= "may">Mayor Peso</option>
                 </select>
@@ -119,7 +119,7 @@ export default function Home (){
  
             <div >
                 <select className="select-css" onChange={e=>handleSortName(e)}>
-                    <option className="select-css option" value="" disabled selected>Filtrar orden alfabetico</option>
+                    <option className="select-css option" value="" >Filtrar orden alfabetico</option>
                     <option className="select-css option" value="asc">A-Z</option>
                     <option className="select-css option" value="des">Z-A</option>
                 </select>

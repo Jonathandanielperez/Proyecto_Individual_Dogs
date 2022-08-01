@@ -1,7 +1,14 @@
 .div{
-  
+    background-image: url(C:\Users\User\Desktop\Proyecto_Individual_Dogs\client\src\imagenes\cuantos_cachorros_puede_tener_un_golden_43027_orig.jpg);
+    /*height: 940px;
+    width: 1800px; */
+    padding: 160px;
     height: 100%;
-    width: 100%;}
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+    
 body{
     background-image: url(C:\Users\User\Desktop\Proyecto_Individual_Dogs\client\src\imagenes\fondo.jpg);
     height: 100%;
@@ -9,3 +16,55 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.text {
+    
+    -webkit-text-stroke: 2px black;
+    color: #FFFFFF;
+    font-size: 50px;
+  }
+
+
+.button5 {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 8px;
+    transition: all 0.5s;
+    cursor: pointer;
+  }
+  
+  .button5 span {
+    cursor: pointer;
+    display: block;
+    position: relative;
+    transition: 0.5s;
+    margin: auto;
+  }
+  
+  .button5 span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+    
+  }
+  
+  .button5:hover span {
+    height: auto;
+    padding-right: 25px;
+ 
+  }
+  
+  .button5:hover span:after {
+    opacity: 1;
+    right: 0;
+
+  }
+

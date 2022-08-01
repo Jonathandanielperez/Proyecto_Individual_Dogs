@@ -6,10 +6,12 @@ import "../estilos/landingPage.css";
 export default function LandingPage(){
     return(
         
-        <div>
-            <h1>Bienvenidos</h1>
+        <div className="div">
+            <div className="contenedor">
+            <h1 className="text">Encuentre su raza faborita con tan solo un click</h1>
+            </div>
             <Link to = '/home'>
-                <button>Ingresar</button>
+                <button className="button5"><span className="button5 span">Ingresar</span></button>
             </Link>
         </div>
        

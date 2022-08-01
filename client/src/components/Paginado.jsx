@@ -11,7 +11,7 @@ export default function Paginado ({dogsPerPage, allDogs, paginado}){
     return(
         <nav>
             <select className="select-css">
-            <option value="" disabled selected>Filtrar por paginas</option>
+            <option value="">Filtrar por paginas</option>
                 {pageNumber &&
                  pageNumber.map(number =>(
                         /*<li className="number"  key={number}>

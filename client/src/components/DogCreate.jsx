@@ -281,7 +281,7 @@ export default function Crear(){
                 </div>
                 <div className="li">
                 <select className="select-css2" onChange={(e)=>handleSelect(e)}>
-                     <option value="" disabled selected>elige temperamentos</option> 
+                     <option value="">elige temperamentos</option>
                     {temp.map((t)=>(
                         <option  className="select-css2 option" value={t.name} key={t.id}>{t.name}</option>
                     ))}
