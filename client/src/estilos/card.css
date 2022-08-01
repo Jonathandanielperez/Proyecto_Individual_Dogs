@@ -17,17 +17,13 @@
     box-shadow: none;
   }
 .card:hover{
-  /*background-color: rgb(181, 246, 224);
-  opacity: 0.4;*/ 
-    background-color: #fa9779;
-    
+    background-color: #fa9779; 
     border:3px solid #f4511e;
     border-radius: 20px;
     text-decoration: none;
     box-shadow: none;
   }
   .img{
-
     width: 288px;
     height: 10rem;
     border-radius: 20px;
@@ -74,5 +70,4 @@
   .button2:hover span:after {
     opacity: 1;
     right: 0;
-
   }

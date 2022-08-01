@@ -22,11 +22,7 @@ export default function Home (){
     const indexOfLastDog = currentPage * dogsPerPage
     const indexOfFirstDog =indexOfLastDog - dogsPerPage
     const currentDogs = allDogs.slice(indexOfFirstDog, indexOfLastDog)
-    console.log("los temps de dogs de las cards",currentDogs);
-
-
-
-
+    //console.log("los temps de dogs de las cards",currentDogs);
     const paginado = (pageNumber)=>{
         setCurrentPage(pageNumber)
     }
@@ -35,10 +31,6 @@ export default function Home (){
         dispatch(getTemperamento());
         dispatch(getDogs());
     },[dispatch])
-
-    /*useEffect (()=>{
-        dispatch(getDogs())
-    },[dispatch])*/
 
     function handleClick(e){
         e.preventDefault();
@@ -51,14 +43,12 @@ export default function Home (){
     function handleFilterCreated(e) {
         e.preventDefault(e);
         dispatch(filterCreated(e.target.value));
-        //setCurrentPage(1);
         setOrden(e.target.value);
       }
    
     function handleFilterByTemp(e){
         e.preventDefault(e);
         dispatch(filterTemperamento(e.target.value))
-        //setCurrentPage(1);
         setOrden(e.target.value);
     };
     
@@ -73,13 +63,11 @@ export default function Home (){
     function handleSortPeso (e){
         e.preventDefault();
         dispatch(orderByPeso(e.target.value))
-        //setCurrentPage(1);
         setOrden(`Ordenado ${e.target.value}`)
     };
 
     return(
            <div>
-            {/*<h1>PAGINA WEB DOGS</h1>*/}
             <SearchBar/>
         <div className="rec">
             <button
@@ -157,4 +145,3 @@ export default function Home (){
     )
 
 }
-//<Link to={'/home/' + e.id}> </Link>    

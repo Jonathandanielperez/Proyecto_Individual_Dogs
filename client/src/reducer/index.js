@@ -44,19 +44,8 @@ function rootReducer (state = initialState, action){
                 ...state,
                 dogs: temperamentsFilter
             }
-
-                /* case 'FILTER_CREATED':               
-                const createdFilter = action.payload === 'created' ? 
-                state.allDogs.filter(el => el.creadoEnDb) : 
-                state.allDogs.filter(el => !el.creadoEnDb)
-
-
-                return {
-                        ...state,
-                        dogs: action.payload === 'all' ? state.allDogs : createdFilter
-                    }*/
-
-                case 'FILTER_CREATED': 
+                    ////filtro por db o api
+                    case 'FILTER_CREATED': 
                     const allDogsC = state.allDogs             
                     const createdFilter = action.payload === "created" ? 
                     allDogsC.filter(el => el.creadoEnDb) : 
@@ -66,8 +55,8 @@ function rootReducer (state = initialState, action){
                         dogs: action.payload === "all" ? allDogsC : createdFilter
                     };
     
-
-                case 'ORDER_BY_NAME':
+                    //// filtro por orden alfabetico
+                    case 'ORDER_BY_NAME':
                     let sortedArr = action.payload === 'asc' ? 
                     state.dogs.sort(function (a,b){
                         if (a.name > b.name){
@@ -92,7 +81,7 @@ function rootReducer (state = initialState, action){
                         dogs: sortedArr
                     }
 
-
+                    /////filtro por peso
                     case 'ORDER_BY_PESO':
 
                        let sortPeso = action.payload === "may" ?
@@ -107,52 +96,27 @@ function rootReducer (state = initialState, action){
                         dogs: sortPeso
                        }
                        
-
-                        /*let sortedArr2 = action.payload === 'men' ? 
-                        state.dogs.sort(function (a,b){
-                            if (a.peso > b.peso){
-                                return 1;
-                            }
-                            if (b.peso > a.peso){
-                                return -1;
-                            }
-                            return 0;
-                        }) :
-                        state.dogs.sort(function (a,b){
-                            if (a.peso > b.peso){
-                                return -1;
-                            }
-                            if (b.peso > a.peso){
-                                return 1;
-                            }
-                            return 0;
-                        })
-                        return {
-                            ...state,
-                            dogs: sortedArr2
-                        }  */
-
-                        
-
-
-
-                        case "GET_DETAIL":
+                    /////detalles del dog
+                    case "GET_DETAIL":
                             return{
                                 ...state,
                                 detail: action.payload
                             } 
-                            
-                            case 'POST_DOG':
+                          
+                    ////ruta crear
+                    case 'POST_DOG':
                                 return{
                                     ...state,
                                 }
-
-                        case 'GET_NAME':
+                    /////buscar por nombre
+                    case 'GET_NAME':
                             return{
                                 ...state,
                                 dogs: action.payload
                                 } 
-                        case "GET_CLEAN":
+                    
+                    /////limpia el estado del detalle
+                    case "GET_CLEAN":
                             return{
                                 ...state,
                                 detail: action.payload

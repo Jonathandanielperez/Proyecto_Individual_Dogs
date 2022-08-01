@@ -20,25 +20,23 @@ const getApiInfo = async ()=>{
             vida_maximo: e.life_span.split(" - ")[1] && 
             e.life_span.split(" - ")[1].split(" ")[0],
 
-            altura_minima: e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],//.toString()
+            altura_minima: e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],
             altura_maxima: e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
 
             peso_minimo :  e.weight.metric.split(" - ")[0] !== "NaN"
             ? e.weight.metric.split(" - ")[0]
-            : 6,//.toString()
+            : 6,
 
             peso_maximo :  e.weight.metric.split("-")[1] && e.weight.metric.split("-")[1],
 
             image: e.image.url,
-            temperamento: e.temperament ? e.temperament: "Unknown"//.map((t)=> {return t.temperament.name}) 
-            //tipo: poke.data.types.map((t)=> {return t.type.name})
-            //temperamento: e.
+            temperamento: e.temperament ? e.temperament: "Unknown"
         }
     })
     return Info;
 }
 
-//const getDbInfo = async () =>{
+    ////////
     const getDbInfo= async()=>{
     return await Dog.findAll({
         include:[{
@@ -50,11 +48,17 @@ const getApiInfo = async ()=>{
         }]       
     });
     }
-    ///////
 
+
+    const getAllDog = async()=>{
+    const apiInfo = await getApiInfo()
+    const dbInfo = await getDbInfo()
+    const infoTotal = [...apiInfo, ...dbInfo]
+    return infoTotal
+}
+    ///////
+    ///////get id
     const getId= async(id) =>{
-       // let a = dog.temperamentos.map(t => t.name);
-       // let b = a.join(",");
        try{
         if(typeof id=== 'string' && id.length > 4){
             const db = await Dog.findByPk(id, {include: Temperamento})
@@ -63,7 +67,7 @@ const getApiInfo = async ()=>{
         name: db.name,
         vida_minimo: db.vida_minimo,
         vida_maximo: db.vida_maximo,
-        altura_minima: db.altura_minima,//.toString()
+        altura_minima: db.altura_minima,
         altura_maxima: db.altura_maxima,
         peso_minimo :  db.peso_minimo,   
         peso_maximo : db.peso_maximo,
@@ -84,31 +88,29 @@ const getApiInfo = async ()=>{
             peso_minimo :  dogA.data.weight.metric.split(" - ")[0] !== "NaN"
             ? dogA.data.weight.metric.split(" - ")[0] : 6,   
             peso_maximo : dogA.data.weight.metric.split("-")[1] && dogA.data.weight.metric.split("-")[1],
-            //image: dogA.data.image,
             temperamento: dogA.data.temperament,
             
          }
     }catch(error){console.log(error)}
     }
-    
-    /*return await Dog.findAll({
-        include:[{
-            model: Temperamento,
-            attributes: ['name'],
-            through: {
-                attributes: [],
-            }
-        }]
-    });
-}*/
 
-const getAllDog = async()=>{
-    const apiInfo = await getApiInfo()
-    const dbInfo = await getDbInfo()
-    const infoTotal = [...apiInfo, ...dbInfo]//apiInfo.concat(dbInfo)
-    return infoTotal
-}
-/////
+
+    router.get('/dogs/:id', async (req,res)=>{
+        const id = req.params.id;
+        try{
+        if(id){
+            let dogId = await getId(id)
+            dogId ?
+            res.status(200).json(dogId) : 
+            res.status(404).send('Dog no encontrado')
+        }
+    }catch (error){console.log("El error del get Id es: ", error)}
+    })
+////////
+
+
+/////// ruta get x raza 
+
 router.get('/dogs', async (req,res) =>{
     const name = req.query.name
     let dogTotal = await getAllDog();
@@ -123,66 +125,10 @@ router.get('/dogs', async (req,res) =>{
     }
 })
 ////
-/*
 
-const getId= async(id)=>{
-    try{
-    if(typeof id === 'string' && id.length > 6){
-        const db = await Dog.findByPk(id, {include: Temperamento})
-        return {
-            id: db.id,
-            name: db.name,
-            vida: db.life_span,
-            altura: db.height.metric,
-            peso: db.weight.metric,
-            image: db.image.url,
-            temperamento: db.temperament
-        }
-    }
-    const dog = await axios.get(`https://api.thedogapi.com/v1/breeds${id}`)
-    return {
-        id: dog.data.id,
-        name: dog.data.name,
-        vida: dog.data.life_span,
-        altura: dog.data.height.metric,
-        peso: dog.data.weight.metric,
-        img: dog.data.image.url,
-        temperamento: dog.data.temperament
-        //tipo: poke.data.types.map((t)=> {return t.type.name}) 
-    }
-    }catch(error){console.log('el error es:',error)}
-    }
 
-    router.get('/dogs/:id', async (req,res)=>{
-        const {id} = req.params;
-        try {
-        if(id){
-            const dogsTotal = await getId(id)
-        
-            dogsTotal ?
-            res.status(200).send(dogsTotal) :
-            res.status(404).send("Dog no encontrado")
-        }}
-        catch (error){
-            console.log("El error del get Id es: ", error);
-        }
-    }) 
-    */
 
-    router.get('/dogs/:id', async (req,res)=>{
-        const id = req.params.id;
-        //const dogTotal = await getAllDog()
-        try{
-        if(id){
-            let dogId = await getId(id)//sacar dog total y poner getId(id)
-            dogId ? //sacar el length
-            res.status(200).json(dogId) : 
-            res.status(404).send('Dog no encontrado')
-        }
-    }catch (error){console.log("El error del get Id es: ", error)}
-    })
-
-   ///
+///// ruta get temperamentos
 
     router.get('/temperaments', async (req,res)=>{
         const tempApi = await axios.get('https://api.thedogapi.com/v1/breeds')
@@ -197,25 +143,8 @@ const getId= async(id)=>{
         const allTemp = await Temperamento.findAll();
         res.send(allTemp)
     })
-    /////
-/*
-    router.post('/dogs', async (req,res)=>{
-        let {name, vida, altura, peso, image, temperamentos} = req.body;
-        let createDog = await Dog.create({
-            name,
-            vida,
-            altura,
-            peso,
-            image,
-        })
 
-        let tempDb = await Temperamento.findAll({
-            where: { name: temperamentos },
-        })
-        createDog.addTemperamento(tempDb),
-        res.send('Dog creado correctamente')
-    })*/
-    
+    /////ruta post
     router.post('/dogs', async (req,res) =>{
     let {
         name,

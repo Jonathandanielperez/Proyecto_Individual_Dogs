@@ -9,7 +9,7 @@ export function validar(input){
     if(!input.name){
         errors.name = "Ingrese un nombre";
     }
-    else if (/^\s*$/.test(input.name)){ // /^\s*$/.test
+    else if (/^\s*$/.test(input.name)){
        errors.name = "Campo obligatorio "
     } else if(!/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/.test(input.name)) {
         errors.name= 'Solo se admiten texto'
@@ -18,7 +18,7 @@ export function validar(input){
     if (/^\s*$/.test(input.altura_minima)){
         errors.altura_minima= "Campo obligatorio "
     }
-    else if(!/(?=.*[0-9])/.test(input.altura_minima)){// /(?=.*[0-9])/.test  /^[1-9]\d*(\.\d+)?$/
+    else if(!/(?=.*[0-9])/.test(input.altura_minima)){
         errors.altura_minima= "Solo se admiten numeros"
     } 
 
@@ -82,12 +82,10 @@ export function validar(input){
     return errors
 }
 
-
 export default function Crear(){
     const dispatch= useDispatch()
     const history = useHistory()
     const temp= useSelector((state)=> state.temperamentos)
-    //console.log("El temp de dogCreate es: ", temp)
     const [errors, setErrors]= useState({});
     const [input, setInput] = useState({
         name: "",
@@ -139,8 +137,6 @@ export default function Crear(){
             ...input,
             [e.target.name]: e.target.value
         });
-        //console.log(input);
-
         setErrors(
             validar({
             ...input,
@@ -275,9 +271,6 @@ export default function Crear(){
                     onChange={(e)=>handleChange(e)}
                     className="inputTerm"
                     />
-                    {/*errors.img && (
-                        <p className="dreanger">{errors.img}</p>
-                    )*/}
                 </div>
                 <div className="li">
                 <select className="select-css2" onChange={(e)=>handleSelect(e)}>
@@ -299,19 +292,7 @@ export default function Crear(){
                     </ul>
                 </div>
                 <button className="button4" type="submit"><span className="button4 span">Agregar raza</span></button>
-            </form>   
-            {/*<div>
-            {errors.name && <p className="dranger">{errors.name}</p>}
-            {errors.vida_minimo && (<p className="dranger">{errors.vida_minimo}</p>)}
-            {errors.vida_maximo && (<p className="dranger">{errors.vida_maximo}</p>)}
-            {errors.altura_minima && <p className="dranger">{errors.altura_minima}</p>}
-            {errors.altura_maxima && <p className="dranger">{errors.altura_maxima}</p>}
-            {errors.peso_minimo && <p className="dranger">{errors.peso_minimo}</p>}
-                    {errors.peso_maximo && <p className="dranger">{errors.peso_maximo}</p>}
-                    </div> */}      
+            </form>      
         </div> 
     )
 }
-
-
-
