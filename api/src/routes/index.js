@@ -37,7 +37,7 @@ const getApiInfo = async ()=>{
 }
 
     ////////
-    const getDbInfo= async()=>{
+    /*const getDbInfo= async()=>{
     return await Dog.findAll({
         include:[{
             model: Temperamento,
@@ -47,22 +47,84 @@ const getApiInfo = async ()=>{
             }
         }]       
     });
+    
+    }*/
+    const getDbInfo = async () => {
+        try{
+            const doges =await Dog.findAll({
+                include: [{
+                    model: Temperamento,
+                    attributes: ['name'],
+                    through: {
+                        attributes: [],
+                    }
+                }]   
+            });
+            const info = doges.map((e)=>{
+                let temp = e.temperamentos.map((e)=>e.name);
+                let aux = temp.join(", ");
+                //console.log(aux)
+                return{
+                    id: e.id,
+                    name: e.name,
+                    vida_minimo: e.vida_minimo,
+                    vida_maximo: e.vida_maximo,
+                    altura_minima: e.altura_minima,
+                    altura_maxima: e.altura_maxima,
+                    peso_minimo :  e.peso_minimo,   
+                    peso_maximo : e.peso_maximo,
+                    image: e.image,
+                    temperamento: aux,//e.temperamentos.map((t)=>t.name + ", "),
+                    creadoEnDb: true,
+            
+                }
+            })
+            return info;
+        }catch (error){
+            console.log("el error en getDbInfo es: ", error)
+        }
     }
-
-
+//concateno lo que viene de base de dato con lo de api
     const getAllDog = async()=>{
     const apiInfo = await getApiInfo()
     const dbInfo = await getDbInfo()
     const infoTotal = [...apiInfo, ...dbInfo]
     return infoTotal
 }
+
+
+router.get("/dogs/:id", async (req, res) => {
+    try {
+      let dogBd = [];
+      const id = req.params.id;
+      if (typeof id === "string" && id.length > 6) {
+        const dog2 = await getDbInfo()//dogBd = await Dog.findAll({ where:  {id:id}, include: Temperamento});
+
+      }
+      if (dogBd.length) {
+        res.send(dogBd);
+      } else {
+        const dogsTotal = await getAllDog();
+        let dogId = dogsTotal.filter((el) => el.id == id);
+        if (dogId) {
+          res.send(dogId);
+        } else {
+          res.send("Dog no encontrado!");
+        }
+      }
+    } catch (error) {
+      console.log("el error de get id es: ", error);
+    }
+  });
+  
     ///////
     ///////get id
+    /*
     const getId= async(id) =>{
        try{
         if(typeof id=== 'string' && id.length > 4){
-            const db = await Dog.findByPk(id, {include: Temperamento})
-    return{
+        const db = await Dog.findByPk(id, {include: Temperamento})
+        return{
         id: db.id,
         name: db.name,
         vida_minimo: db.vida_minimo,
@@ -77,20 +139,24 @@ const getApiInfo = async ()=>{
 
     }
     }
-     const dogA = await axios.get(`https://api.thedogapi.com/v1/breeds/${id}`)
+     const dogA = await axios.get(`https://api.thedogapi.com/v1/breeds`)
+     const dogB = await dogA.data.map(e=>{
          return{
-            id: dogA.data.id,
-            name: dogA.data.name,
-            vida_minimo: dogA.data.life_span.split(" - ")[0] && dogA.data.life_span.split(" - ")[0],
-            vida_maximo: dogA.data.life_span.split(" - ")[1] && dogA.data.life_span.split(" - ")[1].split(" ")[0],
-            altura_minima: dogA.data.height.metric.split(" - ")[0] && dogA.data.height.metric.split(" - ")[0],
-            altura_maxima: dogA.data.height.metric.split(" - ")[1] && dogA.data.height.metric.split(" - ")[1],
-            peso_minimo :  dogA.data.weight.metric.split(" - ")[0] !== "NaN"
-            ? dogA.data.weight.metric.split(" - ")[0] : 6,   
-            peso_maximo : dogA.data.weight.metric.split("-")[1] && dogA.data.weight.metric.split("-")[1],
-            temperamento: dogA.data.temperament,
+            id: e.id,
+            name: e.name,
+            vida_minimo: e.life_span.split(" - ")[0] && e.life_span.split(" - ")[0],
+            vida_maximo: e.life_span.split(" - ")[1] && e.life_span.split(" - ")[1].split(" ")[0],
+            altura_minima: e.height.metric.split(" - ")[0] && e.height.metric.split(" - ")[0],
+            altura_maxima: e.height.metric.split(" - ")[1] && e.height.metric.split(" - ")[1],
+            peso_minimo :  e.weight.metric.split(" - ")[0] !== "NaN"
+            ? e.weight.metric.split(" - ")[0] : 6,   
+            peso_maximo : e.weight.metric.split("-")[1] && e.weight.metric.split("-")[1],
+            image: e.image.url,
+            temperamento: e.temperament,
             
          }
+        })
+        return dogB
     }catch(error){console.log(error)}
     }
 
@@ -99,13 +165,15 @@ const getApiInfo = async ()=>{
         const id = req.params.id;
         try{
         if(id){
-            let dogId = await getId(id)
+            const dogIdTotal = await getId(id)
+            let dogId = dogIdTotal.filter((e)=>e.id==id);
             dogId ?
             res.status(200).json(dogId) : 
             res.status(404).send('Dog no encontrado')
         }
     }catch (error){console.log("El error del get Id es: ", error)}
     })
+    */
 ////////
 
 

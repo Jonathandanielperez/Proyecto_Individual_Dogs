@@ -9,15 +9,27 @@ export default function Paginado ({dogsPerPage, allDogs, paginado}){
     }
 
     return(
-        <nav>
-            <select className="select-css">
+        <nav className="container44">
+            {/*<select className="pagination">
             <option value="">Filtrar por paginas</option>
                 {pageNumber &&
                  pageNumber.map(number =>(                   
-                            <option className=".select-css" onClick={()=>paginado(number)} key={number}>Pagina N° {number}</option>                     
+                            <option className="pagination" onClick={()=>paginado(number)} key={number}>Pagina N° {number}</option>                     
                  ))
                 }
-            </select>
+            </select>*/}
+            <ul className="ul">
+                    <li>
+                    {pageNumber && pageNumber.map((number) => (   
+                    <button
+                    className="but"
+                    key = {number}
+                    onClick={()=>paginado(number)}
+                    >{number}
+                    </button>
+                    ))}
+                    </li>
+            </ul>
         </nav>
     )
 }

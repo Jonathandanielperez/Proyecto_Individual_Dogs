@@ -8,7 +8,7 @@ export default function LandingPage(){
         
         <div className="div">
             <div className="contenedor">
-            <h1 className="text">Encuentre su raza favorita con tan solo un click</h1>
+            <h1 className="text"><br/>Encuentre su raza favorita con tan solo un click</h1>
             </div>
             <Link to = '/home'>
                 <button className="button5"><span className="button5 span">Ingresar</span></button>

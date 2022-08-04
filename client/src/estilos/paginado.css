@@ -1,4 +1,5 @@
-.select-css {
+/*
+    .select-css {
     display: flex;
     font-size: 14px;
     font-family: 'Arial', sans-serif;
@@ -32,6 +33,31 @@
    }
    .select-css option:hover{
     background-color: #f4511e;
+   }*/
+
+.but{
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    border:2px solid #fa9779;
+    background-color: #f4511e;
+    color: white;
+    font-size: 14;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.but:hover{
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    border:2px solid #f4511e;
+    background-color: #fa9779;
+    color: white;
+    font-size: 14;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.ul{
+    list-style: none;
+    
    }
-  
-   

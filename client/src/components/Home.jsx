@@ -56,7 +56,7 @@ export default function Home (){
     function handleSortName (e){
         e.preventDefault();
         dispatch(orderByName(e.target.value))
-        //setCurrentPage(1);
+        setCurrentPage(1);
         setOrden(`Ordenado ${e.target.value}`)
     };
 
@@ -112,12 +112,14 @@ export default function Home (){
                     <option className="select-css option" value="des">Z-A</option>
                 </select>
             </div>
-            <div >
-                <Paginado
-                dogsPerPage={dogsPerPage}
-                allDogs={allDogs.length}
-                paginado={paginado}
-                />
+
+
+            <div>
+                <Link to= '/'>
+                <button className="button">
+                    <span>Salir</span>
+                </button>
+                </Link>
             </div>
 
             
@@ -127,6 +129,13 @@ export default function Home (){
             </button>
             </Link>
             
+            <div >
+                <Paginado
+                dogsPerPage={dogsPerPage}
+                allDogs={allDogs.length}
+                paginado={paginado}
+                />
+            </div>
 
             </nav>       
                 
@@ -135,7 +144,7 @@ export default function Home (){
                     currentDogs.map(e=>{
                         return(
                         
-                        <Card className="hh" name={e.name} image={e.image} temperamento={!e.creadoEnDb ? e.temperamento : e.temperamentos.map( f=>f.name + (', '))} peso_minimo={e.peso_minimo} peso_maximo={e.peso_maximo} id={e.id} key={e.id}/>
+                        <Card className="hh" name={e.name} image={e.image} temperamento={!e.creadoEnDb ? e.temperamento : e.temperamento} peso_minimo={e.peso_minimo} peso_maximo={e.peso_maximo} id={e.id} key={e.id}/>
                                          
                    ) 
                 })

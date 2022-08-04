@@ -146,9 +146,13 @@ export default function Crear(){
     }
 
     function handleSelect(e){
-        if (input.temperamento.length === 3){
-            alert("el perro no puede tener mas de 3 temperamentos")
-        }else if(input.temperamento.length < 3){
+        if (input.temperamento.length === 4){
+            alert("el perro no puede tener mas de 4 temperamentos")
+        }
+        else if(input.temperamento.includes(e.target.value)){
+            alert('No se puede repetir el temperamento')
+        }
+        else if(input.temperamento.length < 4){
         setInput({
             ...input,
             temperamento:[...input.temperamento,e.target.value],
@@ -173,7 +177,7 @@ export default function Crear(){
                 <button className="button4"><span className="button4 span">Volver</span></button>
             </Link>
 
-            <h1 className="lavel">Agregar nueva saza!!!</h1>
+            <h1 className="h1a">Agregar nueva saza!!!</h1>
 
             <form onSubmit={(e)=>handleSubmit(e)}>
                 <div>
@@ -187,7 +191,7 @@ export default function Crear(){
                     className="inputTerm"          
                     />
                     {errors.name && (<p className="danger">{errors.name}</p>)}
-                </div>
+                </div><br/>
                 <div>
                     <label className="lavel">Vida minima: </label>
                     <input
@@ -199,7 +203,7 @@ export default function Crear(){
                     className="inputTerm"
                     />
                      {errors.vida_minimo && (<p className="danger">{errors.vida_minimo}</p>)}
-                </div> 
+                </div> <br/>
                 <div>
                     <label className="lavel">Vida maxima: </label>
                     <input
@@ -211,7 +215,7 @@ export default function Crear(){
                     className="inputTerm"
                     />
                     {errors.vida_maximo && (<p className="danger">{errors.vida_maximo}</p>)}
-                </div> 
+                </div> <br/>
                 <div>
                     <label className="lavel">Atura minima: </label>
                     <input
@@ -223,7 +227,7 @@ export default function Crear(){
                     className="inputTerm"
                     />
                     {errors.altura_minima && <p className="danger">{errors.altura_minima}</p>}
-                </div>        
+                </div> <br/>       
                 <div>
                     <label className="lavel">Atura maxima: </label>
                     <input
@@ -236,7 +240,7 @@ export default function Crear(){
                     />
                     {errors.altura_maxima && 
                     <p className="danger">{errors.altura_maxima}</p>}
-                </div>    
+                </div>   <br/> 
                 <div>
                     <label className="lavel">Peso minimo: </label>
                     <input
@@ -248,7 +252,7 @@ export default function Crear(){
                     className="inputTerm"
                     />
                     {errors.peso_minimo && <p className="danger">{errors.peso_minimo}</p>}
-                </div>
+                </div><br/>
                 <div>
                     <label className="lavel">Peso maximo: </label>
                     <input
@@ -260,7 +264,7 @@ export default function Crear(){
                     className="inputTerm"
                     />
                     {errors.peso_maximo && <p className="danger">{errors.peso_maximo}</p>}
-                </div>
+                </div><br/>
                 <div>
                     <label className="lavel">Imagen: </label>
                     <input
@@ -272,18 +276,18 @@ export default function Crear(){
                     className="inputTerm"
                     />
                 </div>
-                <div className="li">
+                <div className="liss">
                 <select className="select-css2" onChange={(e)=>handleSelect(e)}>
                      <option value="">elige temperamentos</option>
                     {temp.map((t)=>(
                         <option  className="select-css2 option" value={t.name} key={t.id}>{t.name}</option>
                     ))}
                 </select>
-                <ul>
+                <ul className="ul">
                     <li>
                     {input.temperamento.map((el) => (   
                     <button className="select-css2 option"
-                    key = {el.id}
+                    key = {el}
                     onClick={()=>handleDelete(el)}
                     >{el}
                     </button>
