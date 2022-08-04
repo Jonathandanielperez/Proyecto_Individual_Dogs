@@ -1,9 +1,11 @@
 
 .search {
-    padding: 100px;
+    padding: 20px;
     width: auto;
     position: relative;
-    display: block;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
   }
   
   .searchTerm {

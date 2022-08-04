@@ -1,24 +1,24 @@
 import React from "react";
 import "../estilos/paginado.css"
 
-export default function Paginado ({dogsPerPage, allDogs, paginado}){
+export default function Paginado ({dogsPerPage, allDogs, paginado, currentPage, setCurrentPage}){
     const pageNumber = []
-
-    for(let i=1; i<=Math.ceil(allDogs/dogsPerPage); i++){
+    console.log("la pageNumber es", pageNumber)
+    let numPages = Math.ceil(allDogs/dogsPerPage)
+    for(let i=1; i<= numPages; i++){
         pageNumber.push(i)
     }
 
     return(
         <nav className="container44">
-            {/*<select className="pagination">
-            <option value="">Filtrar por paginas</option>
-                {pageNumber &&
-                 pageNumber.map(number =>(                   
-                            <option className="pagination" onClick={()=>paginado(number)} key={number}>Pagina N° {number}</option>                     
-                 ))
-                }
-            </select>*/}
             <ul className="ul">
+                    <button className="but"
+                    disabled={currentPage === 1}
+                    onClick={()=>
+                    setCurrentPage(currentPage === 1? 
+                    currentPage:
+                    currentPage - 1)}
+                    >Prev.</button>
                     <li>
                     {pageNumber && pageNumber.map((number) => (   
                     <button
@@ -29,6 +29,13 @@ export default function Paginado ({dogsPerPage, allDogs, paginado}){
                     </button>
                     ))}
                     </li>
+                    <button className="but"
+                    disabled={currentPage === pageNumber.length}
+                    onClick={()=> 
+                    setCurrentPage(currentPage === numPages?
+                    currentPage:
+                    currentPage + 1)}
+                    >Sig.</button>
             </ul>
         </nav>
     )

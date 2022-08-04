@@ -68,16 +68,10 @@ export default function Home (){
 
     return(
            <div>
-            <SearchBar/>
-        <div className="rec">
-            <button
-            className="recButton"
-            onClick= {e=> {handleClick(e)}} >
-                Recargar
-            </button>
-        </div>
+            
+        
             <nav className="nav">
-
+            
             <div >
                <select className="select-css" onChange={(e) => handleFilterCreated(e)}>  
                     <option className="select-css option" tvalue="">Filtrar por Creado/Existente</option>          
@@ -112,7 +106,13 @@ export default function Home (){
                     <option className="select-css option" value="des">Z-A</option>
                 </select>
             </div>
-
+            <div>
+                <button
+                className="button"
+                onClick= {e=> {handleClick(e)}} >
+                <span>Recargar</span>
+                </button>
+            </div>
 
             <div>
                 <Link to= '/'>
@@ -134,8 +134,11 @@ export default function Home (){
                 dogsPerPage={dogsPerPage}
                 allDogs={allDogs.length}
                 paginado={paginado}
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
                 />
             </div>
+            <SearchBar/>
 
             </nav>       
                 

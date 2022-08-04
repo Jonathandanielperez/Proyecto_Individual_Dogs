@@ -21,7 +21,7 @@ export default function SearchBar(){
 
     return (
         <div className="search">
-
+            
             <input
             className="searchTerm"
             onChange={(e) => handleInputChange(e)}
@@ -37,7 +37,7 @@ export default function SearchBar(){
                  type="submit">
                     Buscar
             </button>
-            
         </div>
+        
     )
 }

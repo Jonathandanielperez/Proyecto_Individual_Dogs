@@ -37,7 +37,7 @@
 
 .but{
     height: 30px;
-    width: 30px;
+    width: 37px;
     border-radius: 5px;
     border:2px solid #fa9779;
     background-color: #f4511e;
@@ -48,7 +48,7 @@
 }
 .but:hover{
     height: 30px;
-    width: 30px;
+    width: 37px;
     border-radius: 5px;
     border:2px solid #f4511e;
     background-color: #fa9779;
